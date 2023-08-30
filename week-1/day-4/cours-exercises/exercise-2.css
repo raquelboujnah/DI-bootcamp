@@ -1,0 +1,33 @@
+.btn-primary{
+    width: 150px !important;
+}
+
+.btn-success{
+    width: 150px !important;
+}
+
+.btn-danger{
+    width: 150px !important;
+}
+
+.alert-primary{
+    width: 150px !important;
+}
+
+.alert-success{
+    width: 150px !important;
+}
+
+.alert-danger{
+    width: 150px !important;
+}
+
+
+.btn{
+    display: inline-block;
+}
+
+form{
+    width: 400px;
+    height: 400px;
+}

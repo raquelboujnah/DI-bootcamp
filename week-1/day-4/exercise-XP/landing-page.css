@@ -1,0 +1,38 @@
+nav{
+    position: fixed;
+}
+
+#tittle{
+    font-size: 120%;
+    
+}
+
+.button{
+    text-decoration: none !important;
+    border: 1px solid rgb(41, 41, 41) !important;
+    background-color: rgb(41, 41, 41) !important;
+}
+
+
+form {
+    display: inline-block;
+    position: relative;
+    right: 50px;
+}
+
+#submit {
+    height: 40px !important;
+    background-color: rgb(5, 186, 5) !important;
+    position: relative;
+    top: 30px;
+    margin: 0px 10px;
+}
+
+.container{
+    margin-top: 50px;
+}
+
+h5, .btn-info{
+    display: inline-block;
+    margin-right: 10px;
+}
