@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="portfolio.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Quicksand:wght@300;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand"><img id="image" src="women4.png" alt="" height="50px">RAQUEL BOUJNAH</a>
+            <div class="d-flex">
+                <li class="d-flex">
+                    <a class="nav-link" href="#">HOME</a>
+                </li>
+                <li class="d-flex">
+                    <a class="nav-link" href="#">ABOUT</a>
+                </li>
+                <li class="d-flex">
+                    <a class="nav-link" href="#">PROJECT</a>
+                </li>
+                <li class="d-flex">
+                    <a class="nav-link" href="#">CONTACT</a>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <!-- background-design -->
+    <header>
+        <div class="container-image">
+            <img id="hero-image"
+                src="https://img.freepik.com/premium-vector/abstract-cures-pastel-color-stylish-templates-design-with-modern-shape-line-nude-pastel_293525-386.jpg"
+                class="img-fluid" alt="#" width="100%">
+            <div class="image-text">
+                <!-- <h1 id="welcome">Welcome</h1> -->
+                <h1 class="tittle">I'm Raquel Boujnah and welcome to my portfolio</h1>
+                <h4>I am a student at Developers Institute and currently in a full stack bootcam</h4>
+            </div>
+        </div>
+    </header>
+    <div class="big-container">
+        <img id="women" src="women2.png" alt="" height="150px">
+        <div class="about">
+            <h5>About me</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam dolore quae praesentium enim,
+                quibusdam
+                mollitia ipsam distinctio voluptates nulla voluptatibus! Fugiat molestias aliquid aperiam dolor
+                suscipit
+                vero obcaecati minus consequatur velit fuga ut et, eligendi debitis accusamus ratione harum
+                voluptatibus
+                quos nam tempore. Sit ex dolorum deserunt, praesentium dicta laborum!</p>
+                <div id="line"></div>
+        </div>
+        
+        <div class="container-skills">
+            <h4>My skills</h4>
+            <span id="html">HTML</span>
+            <span id="css">CSS</span>
+            <span id="js">JS</span>
+            <span id="python">PYTHON</span>
+            <span id="react">REACT</span>
+            <span id="git">GIT</span>
+            <span id="github">GITHUB</span>
+        </div>            
+        <h4 id="myp">My projects</h4>
+        <div id="card-1" class="flip-card">
+
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h1><a href="https://github.com/raquelboujnah/DI-bootcamp/tree/main/week-1/day-1/exercises-XP-gold">Landing page</a></h1>
+                </div>
+                <div class="flip-card-back">
+                    <img src="project-landing.jpeg" alt="Avatar" style="width:330px;height:210px;">
+                </div>
+            </div>
+        </div>
+        <div id="card-2" class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h1><a href="https://github.com/raquelboujnah/DI-bootcamp/tree/main/week-1/day-2/exercises-XP-ninja"></a></h1>
+                </div>
+                <div class="flip-card-back">
+                    <img src="project-login.jpeg" alt="Avatar" style="width:330px;height:210px;">
+                </div>
+            </div>
+        </div>
+        <div id="card-3" class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h1>John Doe</h1>
+                    <p>Architect & Engineer</p>
+                    <p>We love that guy</p>
+                </div>
+                <div class="flip-card-back">
+                    <img src="project-product.jpeg" alt="Avatar" style="width:330px;height:210px;">
+                </div>
+            </div>
+        </div>
+        <div id="bottom-project">
+            <img id="bottom-image" src="project-monroe.jpeg" alt="" width="950px">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, fuga. Quaerat eos minima,
+                fugit, eaque iusto voluptatum porro culpa, iure ullam deleniti facilis est. In mollitia similique
+                numquam, nesciunt reprehenderit magnam quas aperiam eius praesentium id veritatis laudantium dolores
+                fuga!</p>
+        </div>
+        <div class="container-form">
+            <form>
+                <input type="email" name="email" id="email" placeholder="Your email"><br>
+                <input type="text" name="name" id="name" placeholder="Your name"><br>
+                <textarea name="message" id="message" rows="5" cols="20">Your message</textarea>
+                <input class="checkbox" type="checkbox"><span id="anonymous">Want to be anonymous?</span>
+                <button id="login" type="submit">SEND</button>
+            </form>
+        </div>
+    </div>
+    <footer class="container-footer">
+        <div id="connect">
+            <div id="left"></div>
+            <p id="or">or contact with</p>
+            <div id="right"></div>
+        </div>
+        <div id="icons">
+            <a href=""><i class="fa-brands fa-github"></i></a>
+            <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <p id="copy"><i class="fa-regular fa-copyright"></i>2023</p>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
