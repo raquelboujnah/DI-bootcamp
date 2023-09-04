@@ -30,12 +30,13 @@
 #exercise-4
 #An integer is a number without a decimal point. A float is a floating-point number, which means it is a number that has a decimal place.
 #arange()
-# sequence = []
-# for number in range(1, 6):
-#     float = number + 0.5
-#     sequence.extend(number, float)
-# sequence = sequence[1:-1]
-# print(sequence)
+# number = 1 
+# new_list = []
+# for x in range(8):
+#     number += 0.5
+#     new_list.append(number)
+    
+# print(new_list)
 
 #exercise-5
 # for num in range(21) :
@@ -52,9 +53,9 @@
 #         break
 
 #exercise-7
-user_fruits = input("what is your favorite fruit? if you have several ones please separate them with a single space\n")
-list_fruit = user_fruits.split()
-print(list_fruit)
+# user_fruits = input("what is your favorite fruit? if you have several ones please separate them with a single space\n")
+# list_fruit = user_fruits.split()
+# print(list_fruit)
 # random_fruit = input("now choose a random fruit\n")
 # if random_fruit in list_fruit:
 #     print("you choose one of your favorite fruits! enjoy")
