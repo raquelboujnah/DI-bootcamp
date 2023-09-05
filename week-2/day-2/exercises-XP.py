@@ -109,6 +109,8 @@
 #         name_list.remove(teen_name)
 #         print("you are not allowed to enter")
 #         print(name_list)
+#     else:
+#         print("you allowed to watch the moovie")
         
         
         
