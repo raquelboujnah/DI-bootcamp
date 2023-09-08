@@ -19,7 +19,7 @@
 #exercise-3
 # basket = ["Banana", "Apples", "Oranges", "Blueberries"]
 # basket.remove("Banana")
-# basket.remove("Blueberries")
+# basket.pop()
 # basket.append("kiwi")
 # basket.insert(0, "Apples")
 # apples = basket.count("Apples")
@@ -39,9 +39,8 @@
 # print(new_list)
 
 #exercise-5
-# for num in range(21) :
-#     if num % 2 == 0 :
-#         print(num)
+# for num in range(0, 22, 2):
+#     print(num)
         
 #exercise-6
 # you can also user_name = ""
@@ -63,7 +62,7 @@
 #     print("you choose a new fruit. i hope you enjoy")
 
 
-# exercise-8
+#exercise-8
 # list_topping = []
 # price = 10
  
@@ -95,7 +94,7 @@
 #         total_price += 15
 #         print(f"your ticket will be 15 dollar - your total price is {total_price}")
 
-# name_list = ["raquel", "sarah", "hanna"]
+name_list = ["raquel", "sarah", "hanna"]
 # print(name_list)
 # while True:
 #     teen_name = input("what is your name?")
@@ -111,8 +110,16 @@
 #         print(name_list)
 #     else:
 #         print("you allowed to watch the moovie")
-        
-        
+
+for name in name_list[:]:
+    age = int(input(f"{name} what is your age")) 
+    if 16 <= age <= 21:
+        print("you are allowed")
+    else :
+        name_list.remove(name)
+        print("you are not allowed")
+print(name_list)
+       
         
 #exercise-10
 
