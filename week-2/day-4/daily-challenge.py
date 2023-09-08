@@ -20,7 +20,7 @@ matrix = [
 def exrtact(matrix):
     list1 = []
     column_list1 = [item[0] for item in matrix]
-    if letter.char() in column_list1:
+    if letter.isalpha() in column_list1:
         list1.append(letter)
     print(list1)
 exrtact(matrix)
@@ -28,7 +28,7 @@ exrtact(matrix)
 def sortir(matrix):
     list2 = []
     column_list2 = [item[1] for item in matrix]
-    if letter in column_list2: 
+    if letter.isalpha() in column_list2: 
         list2.append(letter)
     print(list2)
 
@@ -37,7 +37,7 @@ sortir(matrix)
 def out(matrix):
     list3 =[]
     column_list3 = [item[2] for item in matrix]
-    if letter.char() in column_list3:
+    if letter.isalpha() in column_list3:
         list3.append(letter)
     print(list3)
 
