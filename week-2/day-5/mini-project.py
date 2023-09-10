@@ -4,24 +4,16 @@ def welcome():
     print("WELCOME TO MY TIC TAC TOE!")
 welcome()
 
-winning_combination = [
-    [(0,0), (0,1), (0, 2)],
-    [(1,0), (1,1), (1,2)],
-    [(2,0), (2,1), (2,2)],
-    [(0,0), (1,0), (2,0)],
-    [(0,1), (1,1), (2,1)],
-    [(0,2), (1,2), (2,2)],
-    [(0,0), (1,1), (2, 2)],
-    [(0,2), (1,1), (2,0)],
-]
+
+
 board_matrix = [
     [" ", " ", " "],
     [" ", " ", " "],
     [" ", " ", " "]
 ]
 
-game_going = True
-current_player = "X"
+# game_going = True
+# current_player = "X"
 
 def display_board():
     print("*****************")
@@ -31,41 +23,61 @@ def display_board():
     print("--|---|--")
     print("*****************")
         
-display_board()
 
-def player_input():  
-    row = int(input(f"{current_player} choose a row: ")) 
+
+def player_input(player):  
+    row = int(input(f"{player} choose a row: ")) 
     column = int(input("Now choose a column: "))
     while board_matrix[row - 1][column - 1] !=  " ":
          print("this position is already taken choose another one")
          continue
     else:
-        board_matrix[row - 1][column - 1] = current_player
+        board_matrix[row - 1][column - 1] = player
         display_board()
 
-    
-win_combination = [(0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8), (0,4,8), (2,4,6)]
 
 def chek_win():
+    win_combination = [
+    [(0,0), (0,1), (0,2)],
+    [(1,0), (1,1), (1,2)],
+    [(2,0), (2,1), (2,2)],
+    [(0,0), (1,0), (2,0)],
+    [(0,1), (1,1), (2,1)],
+    [(0,2), (1,2), (2,2)],
+    [(0,0), (1,1), (2,2)],
+    [(0,2), (1,1), (2,0)]] 
     #global winner
-    for comb in win_combination:
-        for position in comb:
-            if position == "X":
-                print("the winner is 'X'")
-            elif position == "O":
-                print("the winner is 'O'")
-            elif " " not in board_matrix:
-                print("No one wins")
-                   
-    if current_player == "X":
-        current_player = "O"
-    else:
-        current_player = "X"
+    lst_player = ["X", "O"]
+    
+    for player in lst_player:
+        for comb in win_combination:
+            counter = 0
+            for position in comb:
+                if board_matrix[position[0]][position[1]] == player:
+                    counter += 1
+                else:
+                    break
+            if counter == 3:
+                print(f'the winner is {player}')
+                return True
+    position_counter = 0
+    for row in board_matrix:
+        for pos in row:
+            if pos != " ":
+                position_counter += 1
+    if position_counter == 9:
+        print("ex aequo")
+        return True
 
 
 def play():
-    while game_going:
-        display_board
-        player_input()
-        chek_win()
+    while True:
+        display_board()
+        player_input("X")
+        if chek_win() == True:
+            break
+        player_input("O")
+        if chek_win() == True:
+            break
+play()
     
