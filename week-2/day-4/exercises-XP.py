@@ -143,12 +143,11 @@ def question_user():
     for quiz in star_wars:
         print(quiz["question"])
         user_answer = input("what is your answer?\n")
-        if user_answer.lower() != quiz["answer"]:
+        if user_answer != quiz["answer"]:
            wrong_answer += 1 
            new_quiz = quiz.copy()
            new_quiz["wrong_answer_user"] = user_answer
            wrong_answer_list.append(new_quiz)
-           print(new_quiz)
         else:
             good_answer += 1
     
@@ -160,7 +159,7 @@ def quiz_result(wrong, good, list_):
     print(f"You have done {good} correct answer")
     print(f"You have done {wrong} wrong answer")
     for quest in list_:
-        print(f"In the question {quest['question']} your answer was{quest['user_answer']} but the correct answer was {quest['answer']}")
+        print(f"In the question {quest['question']} your answer was {quest['wrong_answer_user']} but the correct answer was {quest['answer']}")
         
     print("\n-----------------------")
     if wrong > 3:
