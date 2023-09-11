@@ -12,19 +12,23 @@ class Farm:
         
         
     def get_info(self):
-        print(f"{self.name}'s farm \n\n")
+        sentence = f"{self.name}'s farm \n\n"
         for animal, amount in self.list_animal.items():
-           print(f"{animal} : {amount}")
-        print("\n \n E-I-E-I-0!")
+           sentence += f"{animal} : {amount} \n"
+        sentence += "\n \n      E-I-E-I-0!"
+        return sentence
     
     def get_animal_types(self):
-        list_types = list(self.list_animal.keys())
+        list_types = sorted(list(self.list_animal.keys()))
         return list_types
         
     def get_short_info(self):
-        print(f"{self.name}'s farm has {macdonald.get_animal_types()[0]}s, {macdonald.get_animal_types()[2]}s and {macdonald.get_animal_types()[1]}")
-        
-        
+        all_types = self.get_animal_types()
+        for index, type in enumerate(all_types):
+            if self.list_animal[type] > 1:
+                all_types[index] += 's'
+        sentence_farm = ", ".join(all_types[0 : -1])
+        print(f"{self.name}'s farm has {sentence_farm} and {all_types[2]}")
 
 
 macdonald = Farm("McDonald")
@@ -32,6 +36,6 @@ macdonald.add_animal('cow', 5)
 macdonald.add_animal('sheep')
 macdonald.add_animal('sheep')
 macdonald.add_animal('goat', 12)
-macdonald.get_info()
+print(macdonald.get_info())
 macdonald.get_animal_types()
 macdonald.get_short_info()
