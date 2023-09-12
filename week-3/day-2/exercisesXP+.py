@@ -38,12 +38,16 @@ class TheIncredibles(Family):
     {'name':'Sarah','age':32,'gender':'Female','is_child':False,'power': 'read minds','incredible_name':'SuperWoman'}
 ]
         
-    def use_power(self, name):
+    def use_power(self, name): 
+        print("hereee", self.members)
         for member in self.members:
+            print(member['name'] == name)
+            print(member['age'] >= 18)
             if member['name'] == name and member['age'] >= 18:
-                print(f"{member['power']}")
+                print(f" HEREEE {member['power']}")
+                break
             else:   
-                print("you are not 18")
+                print("HERREEE ALSO you are not 18")
                 
     def incredible_presentation(self):
         super().family_presentation()
@@ -53,10 +57,10 @@ class TheIncredibles(Family):
 
         
 family_2 = TheIncredibles("Israel")
-family_2.use_power("Michael")
-print(family_2.incredible_presentation())
-family_2.born(name ='jack', age = 0, gender = 'Male', is_child = True, power = 'Unknow Power', incredible_name = 'BabyJack')
-print(family_2.incredible_presentation())
+family_2.use_power("Sarah")
+# print(family_2.incredible_presentation())
+# family_2.born(name ='jack', age = 0, gender = 'Male', is_child = True, power = 'Unknow Power', incredible_name = 'BabyJack')
+# print(family_2.incredible_presentation())
 
         
     

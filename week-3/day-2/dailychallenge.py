@@ -1,10 +1,11 @@
+import math
 class Pagination:
     
     def __init__(self, items, page_size = 10):
         self.items = items
         self.page_size = int(page_size)
-        self.current_page = 0
-        self.total_page = int(len(self.items)/4)
+        self.current_page = 1
+        self.total_page = math.ceil((len(self.items)/self.page_size))
         
     def get_visible_item(self):
         visible_item = self.items[self.current_page * self.page_size : self.current_page * self.page_size + self.page_size]
@@ -19,15 +20,24 @@ class Pagination:
         return self
 
     def goToPage(self, pageNum):
-        self.current_page = pageNum
+        if pageNum <= self.total_page and pageNum > 0:
+           self.current_page = pageNum
+        else:
+            print("wrong page")
         return self
         
     def nextPage(self):
-        self.current_page += 1
+        if self.current_page < self.total_page:
+           self.current_page += 1
+        elif self.current_page == self.total_page:
+           self.current_page = 1
         return self
     
     def prevPage(self):
-        self.current_page -= 1
+        if self.current_page > 1:
+            self.current_page -= 1
+        else:
+            self.current_page = self.total_page
         return self
     
 
