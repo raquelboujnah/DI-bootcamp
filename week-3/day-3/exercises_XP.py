@@ -96,7 +96,28 @@ def birthdate(day, month, year):
 birthdate(22, 8, 2001)
 
 #exercise-8
+from faker import Faker
+faker = Faker()
 list_1 = []
+
+def new_user():
+    user = {
+        "name": faker.name(),
+        "address": faker.address(),
+        "language": faker.language_code()
+    }
+    list_1.append(user)
+for _ in range(4):
+    new_user()
+print(list_1)
+
+
+
+
+
+
+    
+
 
     
     
