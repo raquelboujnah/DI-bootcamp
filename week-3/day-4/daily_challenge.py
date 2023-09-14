@@ -4,30 +4,27 @@ class Text:
         self.text = text.split()
         
     def frequency(self, word):
-        word_list = self.text
-        print(f"the word {word} is present {word_list.count(word)} time in the text")  
+        print(f"the word {word} is present {self.text.count(word)} time in the text")  
         
     def most_frequent(self):
-        word_list = self.text
         counter = 0
-        num = word_list[0]
-        for i in word_list:
-            curr_frequency = word_list.count(i)
+        word = self.text[0]
+        for i in self.text:
+            curr_frequency = self.text.count(i)
             if curr_frequency > counter:
                 counter = curr_frequency
-                num = i
-        return num
+                word = i
+        return word
     
     def unique_word(self):
-        word_list = self.text
-        unique = set(word_list)
+        unique = set(self.text)
         return unique
     
     @classmethod
     def file_text(cls, file_name):
         with open(file_name , "r") as file:
             read_file = file.read()
-            return Text(read_file)
+            return cls(read_file)
         
 text_word = "A good book would sometimes cost as much as a good house."
 txt2 = Text.file_text("stranger.txt")
