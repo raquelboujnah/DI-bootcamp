@@ -30,5 +30,7 @@
 -- select * from students where id = 1 or id = 3
 -- select * from students where birth_date = '2000-01-01' or birth_date > '2000-01-01' 
 
-
-
+-- exercise-XP-GOLD
+-- select * from students where id < 5 order by last_name
+-- select * from students where birth_date = (select min(birth_date) from students)
+-- select * from students where id > 2 and id < 6
