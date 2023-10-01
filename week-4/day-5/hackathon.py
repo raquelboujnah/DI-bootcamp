@@ -1,76 +1,116 @@
-from random import randint
+import random
+# #Modules to import
+# import pygame
 
-Hidden_Pattern = [[' ']*8 for x in range(8)]
-Guess_Pattern = [[' ']*8 for x in range(8)]
-player_pattern = [[' ']*8 for x in range(8)]
+# #Initialize modules
+# pygame.init()
 
-let_to_num={'A':0,'B':1, 'C':2,'D':3,'E':4,'F':5,'G':6,'H':7}
-list_column = 'ABCDEFGH'
+# #Game settings and variables
+# SCREEN_WIDTH = 860
+# SCREEN_HEIGHT = 660
+# ROWS = 10
+# COLOMN = 10
+# CELL_SIZE = 50
+
+# #Colors
+
+# #Pygame display intialization 
+# GAME_SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+# pygame.display.set_caption('BATTLE SHIP')
 
 
+# #loading game variables
+# player_game_logic = 
+
+
+
+# #Main game loop
+# RUN_GAME = True
+# while RUN_GAME:
+    
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             RUN_GAME = False
+    
+#     pygame.display.update()
+    
+# pygame.quit()
+
+computer_board = [['_']*9 for x in range(9)]
+player_guess_board = [['_']*9 for x in range(9)]
+player_board = [['_']*9 for x in range(9)]
+
+let_to_num = {'A':0,'B':1,'C':2,'D':3,'E':4,'F':5,'G':6,'H':7} #--------------------------------------
+list_column = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+list_row = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+#print board for the right player
 def print_board(board):
-    print(' A B C D E F G H')
-    print(' ***************')
-    row_num=1
+    print('  A B C D E F G H I')
+    row_num = 1
     for row in board:
-        print("%d|%s|" % (row_num, "|".join(row)))
-        row_num +=1
+        print("%s|%s|" % (row_num, "|".join(row))) #--------------------------
+        row_num += 1
 
 
-def create_player_ships(board):
-    for _ in range(3):
-        ship_counter = 1 
-        player_ship_row = int(input(f'Please choose a row for your {ship_counter} ship (1-8) '))
-        while player_ship_row not in '12345678':
-            print("You have to choose a number between 1-8")
-            player_ship_row = int(input("Please enter a number from 1 to 8 "))
+#create ship for the player
+def create_player_ships(board):       
+    ship_counter = 1 
+    print_board(board)
+    for _ in range(5):
+        try:
+            player_ship_row = int(input(f'Please choose a row for your {ship_counter} ship (1-9) '))
+            while player_ship_row not in list_row:
+                player_ship_row = int(input("You have to choose a number between 1-9 "))
+        except: #---------------------------------------------
+            player_ship_row = int(input("You have to choose a number between 1-9 "))
             
-        player_ship_col = input(f'Please choose a column for your ship {ship_counter} (A-H) ').upper()        
+        player_ship_col = input(f'Please choose a column for your {ship_counter} ship d(A-I) ').upper()        
         while player_ship_col not in list_column:
-                print("You have to choose a letter from A-H")
-                player_ship_col = input("Please enter a letter from A to H ").upper()
-            
+            player_ship_col = input("You have to choose a letter from A-I ").upper()
+        
         for i, col in enumerate(list_column):
             if col == player_ship_col:
-                player_ship1_col_idx = i
+                player_ship_col_idx = i
                 break
             
-        while board[player_ship_row][player_ship1_col_idx] == 'X':-----------------------------
+        while board[player_ship_row - 1][player_ship_col_idx] == 'X': #---------------------------
             print('This palce is already taken choose another one')
-        board[player_ship_row][player_ship_col] = 'X'
-        print_board(board)
-        ship_counter += 1
+            
+            
+        board[player_ship_row - 1][player_ship_col_idx] = 'X'
+        ship_counter += 1 
+        
         
     print("Your ships are all set! You are ready to start the game")
+    print_board(board)
 
 
-def guess_ship_location():
-    #Enter the row number between 1 to 8
-    guess_row = input(int('Try to guess where your adversair place his boats. Enter a row (1-8) '))
-    while guess_row not in '12345678':
-        print("Please enter a valid row ")
-        guess_row = input('Please enter a number from 1 to 8 ')
+#create ship for the computer
+def create_computer_ships(board):
+    for _ in range(5):
+        ship_r, ship_cl = random.randint(0, 7), random.randint(0, 7)
+        while board[ship_r][ship_cl] == 'X':
+            ship_r, ship_cl = random.randint(0, 7), random.randint(0, 7)
+        board[ship_r][ship_cl] = 'X'
+    print("your adversair choose his places")
+
+
+def player_guess_ship_location():
+    guess_row = input(int('Try to guess where your adversair place his boats. Enter a row (1-9) '))
+    while guess_row not in list_row:
+        guess_row = input(int("Please enter a valid row, a number from 1 to 9 "))
         
-    #Enter the Ship column from A TO H
-    guess_column = input('Please enter a column (A-H) ').upper()
-    while guess_column not in 'ABCDEFGH':
-        print("Please enter a valid column ")
-        guess_column = input('Please enter a letter from A to H ')
+    guess_column = input('Please enter a column (A-I) ').upper()
+    while guess_column not in list_column:
+        guess_column = input("Please enter a valid column, a letter from A to I ")
         
     for i, col in enumerate(list_column):
         if col == guess_column:
             guess_column_idx = i
             break
     return guess_row - 1, guess_column_idx 
-
-
-#Function that creates the ships
-def create_computer_ships(board):
-    for _ in range(3):
-        ship_r, ship_cl = randint(0,7), randint(0,7)
-        while board[ship_r][ship_cl] == 'X':
-            ship_r, ship_cl = randint(0, 7), randint(0, 7)
-        board[ship_r][ship_cl] = 'X'
 
 
 def count_hit_ships(board):
@@ -82,27 +122,25 @@ def count_hit_ships(board):
     return count
 
 
-create_ships(Hidden_Pattern)
-#print_board(Hidden_Pattern)
 turns = 10
 while turns > 0:
     print('Welcome to Battleship')
-    print_board(Guess_Pattern)
-    row,column =guess_ship_location()
-    if Guess_Pattern[row][column] == '-':
+    print_board(player_guess_board)
+    row,column = player_guess_ship_location()
+    if player_guess_board[row][column] == '~':
         print(' You already guessed that ')
-    elif Hidden_Pattern[row][column] =='X':
+    elif computer_board[row][column] =='X':
         print(' Congratulations you have hit the battleship ')
-        Guess_Pattern[row][column] = 'X'
+        player_guess_board[row][column] = '*'
         turns -= 1
     else:
-        print('Sorry,You missed')
-        Guess_Pattern[row][column] = '-'
+        print('Sorry, you missed')
+        player_guess_board[row][column] = '~'
         turns -= 1
-    if  count_hit_ships(Guess_Pattern) == 5:
+    if  count_hit_ships(player_guess_board) == 5:
         print("Congratulations you have sunk all the battleships ")
         break
-    print(' You have ' +str(turns) + ' turns remaining ')
+    print(f'You have {turns} remaining ')
     if turns == 0:
         print('Game Over ')
         break

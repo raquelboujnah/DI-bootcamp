@@ -14,7 +14,10 @@
 -- from customer as c
 -- join payment as p on c.customer_id = p.customer_id
 -- order by c.customer_id;
-
+-- select f.*
+-- from film as f
+-- left join inventory as i on f.film_id = i.film_id
+-- where i.film_id is null;
 -- select ci.city, co.country
 -- from city as ci
 -- join country as co on ci.country_id = co.country_id;

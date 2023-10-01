@@ -1,10 +1,10 @@
 -- select name from language
 
--- select f.title, f.description, l.name as language
+-- select f.title, f.description, l.name 
 -- from film as f
 -- join language as l on f.language_id = l.language_id;
 
--- select f.title, f.description, l.name as language
+-- select f.title, f.description, l.name
 -- from language as l 
 -- left join film as f on l.language_id = f.language_id;
 
@@ -21,13 +21,13 @@
 
 -- create table customer_review(
 -- 	review_id serial primary key,
--- 	new_film_id integer unique,
--- 	language_id integer unique,
--- 	score integer check(score between 1 and 10) not null,
--- 	review_text text not null,
--- 	last_update date not null,
+--  new_film_id integer,
+-- 	language_id integer,
+-- 	score integer check(score between 1 and 10),
+-- 	review_text text,
+-- 	last_update date,
 	
--- 	foreign key (new_film_id) references new_film(new_film_id) on delete cascade,
+--  foreign key (new_film_id) references new_film(new_film_id) on delete cascade,
 -- 	foreign key (language_id) references language(language_id) on delete cascade
 -- );
 
