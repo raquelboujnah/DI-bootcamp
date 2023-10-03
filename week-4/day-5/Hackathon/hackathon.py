@@ -2,6 +2,10 @@ import random
 import json
 from create_ship import Ships
 from create_ship import Computer_ships
+from check_hit_win import player_turn
+from check_hit_win import computer_turn
+from check_hit_win import check_hit
+from check_hit_win import chek_if_sank
 # #Modules to import
 # import pygame
 
@@ -42,16 +46,13 @@ from create_ship import Computer_ships
 computer_board = [['_']*9 for x in range(9)]
 player_guess_board = [['_']*9 for x in range(9)]
 player_board = [['_']*9 for x in range(9)]
+com_guess_board = [['_']*9 for x in range(9)]
+
 
 let_to_num = {'A':0,'B':1,'C':2,'D':3,'E':4,'F':5,'G':6,'H':7} #--------------------------------------
 list_column = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 list_row = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-Carrier = 'CCCC'
-Battleship = 'BBBB'
-Cruiser = 'XXX'
-Submarine = 'SS'
-Destroyer = 'DD'
 
 #print board for the right player
 def print_board(board):
@@ -62,73 +63,12 @@ def print_board(board):
         row_num += 1
 
 
-#create ship for the player
-def create_player_ships(board):  
-    ship_counter = 1 
-    print_board(board)
-    for _ in range(5):
-        try:
-            player_ship_row = int(input(f'Please choose a row for your ship number {ship_counter} (1-9) '))
-            while player_ship_row not in list_row:
-                player_ship_row = int(input("You have to choose a number between 1-9 "))
-        except ValueError:
-            player_ship_row = int(input("You have to choose a number between 1-9 "))
-            
-        player_ship_col = input(f'Please choose a column for your ship number {ship_counter} (A-I) ').upper()        
-        while player_ship_col not in list_column:
-            player_ship_col = input("You have to choose a letter from A-I ").upper()
-        
-        for i, col in enumerate(list_column):
-            if col == player_ship_col:
-                player_ship_col_idx = i
-                break
-            
-        while board[player_ship_row - 1][player_ship_col_idx] == 'X': #---------------------------
-            print('This palce is already taken choose another one')
-            
-            
-        board[player_ship_row - 1][player_ship_col_idx] = 'X'
-        ship_counter += 1 
-        
-        
-    print("Your ships are all set! You are ready to start the game")
-    print_board(board)
 
 
 
-#create ship for the computer
-def create_computer_ships(board):
-    for _ in range(5):
-        ship_r, ship_cl = random.randint(0, 7), random.randint(0, 7)
-        while board[ship_r][ship_cl] == 'X':
-            ship_r, ship_cl = random.randint(0, 7), random.randint(0, 7)
-        board[ship_r][ship_cl] = 'X'
-    print("your adversair choose his places")
 
 
-def player_guess_ship_location():
-    guess_row = int(input('Try to guess where your adversair place his boats. Enter a row (1-9) '))
-    while guess_row not in list_row:
-        guess_row = int(input("Please enter a valid row, a number from 1 to 9 "))
-        
-    guess_column = input('Please enter a column (A-I) ').upper()
-    while guess_column not in list_column:
-        guess_column = input("Please enter a valid column, a letter from A to I ")
-        
-    for i, col in enumerate(list_column):
-        if col == guess_column:
-            guess_column_idx = i
-            break
-    return guess_row - 1, guess_column_idx 
 
-
-def count_hit_ships(board):
-    count=0
-    for row in board:
-        for column in row:
-            if column == 'X':
-                count += 1
-    return count
 
 
 # turns = 10
@@ -163,28 +103,79 @@ def get_names():
     return player_name, computer_name
 
 
-ship1_ply = Ships("Carrier")
-ship2_ply = Ships('Battleship')
-ship3_ply = Ships('Cruiser')
-ship4_ply = Ships('Submarine')
-ship5_ply = Ships('Destroyer')
 
-ship1_ply.create_player_ship_4(player_board)
-ship2_ply.create_player_ship_4(player_board)
-ship3_ply.create_player_ship_3(player_board)
-ship4_ply.create_player_ship_2(player_board)
-ship5_ply.create_player_ship_2(player_board)
+ship1_ply = Ships("Carrier", 4, 'X')
+ship2_ply = Ships('Battleship', 4, 'K')
+ship3_ply = Ships('Cruiser', 3, 'D')
+ship4_ply = Ships('Submarine', 2, 'O')
+ship5_ply = Ships('Destroyer', 2, 'H')
 
-ship1_com = Computer_ships("Carrier")
-ship2_com = Computer_ships('Battleship')
-ship3_com = Computer_ships('Cruiser')
-ship4_com = Computer_ships('Submarine')
-ship5_com = Computer_ships('Destroyer')
+# print_board(player_board)
+# ship1_ply.create_player_ship(player_board)
+# print_board(player_board)
+# ship2_ply.create_player_ship(player_board)
+# print_board(player_board)
+# ship3_ply.create_player_ship(player_board)
+# print_board(player_board)
+# ship4_ply.create_player_ship(player_board)
+# print_board(player_board)
+# ship5_ply.create_player_ship(player_board)
+# print_board(player_board)
 
-ship1_com.create_computer_ships_4(computer_board)
-ship2_com.create_computer_ships_4(computer_board)
-ship3_com.create_computer_ships_3(computer_board)
-ship4_com.create_computer_ships_2(computer_board)
-ship5_com.create_computer_ships_2(computer_board)
+ship1_com = Computer_ships("Carrier", 4, 'X', 5)
+ship2_com = Computer_ships('Battleship', 4, 'K', 5)
+ship3_com = Computer_ships('Cruiser', 3, 'D', 6)
+ship4_com = Computer_ships('Submarine', 2, 'O', 7)
+ship5_com = Computer_ships('Destroyer', 2, 'H', 7)
+
+ship6_com = Computer_ships("Carrier", 4, 'X', 5)
+ship7_com = Computer_ships('Battleship', 4, 'K', 5)
+ship8_com = Computer_ships('Cruiser', 3, 'D', 6)
+ship9_com = Computer_ships('Submarine', 2, 'O', 7)
+ship10_com = Computer_ships('Destroyer', 2, 'H', 7)
+
+ship6_com.create_computer_ships(player_board)
+ship7_com.create_computer_ships(player_board)
+ship8_com.create_computer_ships(player_board)
+ship9_com.create_computer_ships(player_board)
+ship10_com.create_computer_ships(player_board)
+print_board(player_board)
+
+ship1_com.create_computer_ships(computer_board)
+ship2_com.create_computer_ships(computer_board)
+ship3_com.create_computer_ships(computer_board)
+ship4_com.create_computer_ships(computer_board)
+ship5_com.create_computer_ships(computer_board)
+print_board(computer_board)
+
+ply_list_X = []
+ply_list_K = []
+ply_list_D = []
+ply_list_O = []
+ply_list_H = []
+
+com_list_X = []
+com_list_K = []
+com_list_D = []
+com_list_O = []
+com_list_H = []     
+ 
+
+count = 0
+while count < 8:
+    print_board(player_guess_board)
+    pos = player_turn(player_guess_board)
+    g_guesses = check_hit(player_guess_board, computer_board, pos)
+    print_board(player_guess_board)
+    chek_if_sank(computer_board, g_guesses, ply_list_X, ply_list_K, ply_list_D, ply_list_O, ply_list_H)
+    
+    com_pos = computer_turn(com_guess_board)
+    com_g_guesses = check_hit(com_guess_board, player_board, com_pos)
+    print_board(com_guess_board)
+    chek_if_sank(player_board, com_g_guesses, com_list_X, com_list_K, com_list_D, com_list_O, com_list_H)
+    count += 1
+
+
+
 
 
