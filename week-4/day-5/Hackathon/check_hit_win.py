@@ -1,66 +1,59 @@
 import random
 list_column = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 list_row = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+let_to_num = {'A':0,'B':1,'C':2,'D':3,'E':4,'F':5,'G':6,'H':7, 'I':8} 
 
-def player_turn(board):
+
+def player_turn(board, name):
     guess_empty = False
     while guess_empty == False:
-        print('Try to guess where your adversair places his boats')
         try:
-            ply_guess_r = int(input('Enter the row: '))
+            ply_guess_r = int(input('Enter the row: ')) - 1 
             while ply_guess_r not in list_row:
-                ply_guess_r = int(input('You have to enter a number from 1 to 9 '))
+                ply_guess_r = int(input('You have to enter a number from 1 to 9 ')) - 1
         except ValueError:
-            ply_guess_r = int(input('You have to enter a number from 1 to 9 '))
+            ply_guess_r = int(input('You have to enter a number from 1 to 9 ')) - 1
             
         ply_guess_c = input('Enter the column: ').upper()
         while ply_guess_c not in list_column:
-            ply_guess_c = input('You have to enter a letter from A to I ')
+            ply_guess_c = input('You have to enter a letter from A to I ').upper()
             
-        
-        for i, col in enumerate(list_column):
-            if col == ply_guess_c:
-                ply_guess_c_idx = i
-                break
-        ply_guess_r -= 1
+        ply_guess_c_idx = let_to_num[ply_guess_c]
         
         if board[ply_guess_r][ply_guess_c_idx] == '_':
             board[ply_guess_r][ply_guess_c_idx] = '-'
+            print(f'{name} launched a missile at place: {ply_guess_r}, {ply_guess_c}')
             guess_empty = True
         else:
             print('You already guessed this spot')
             
     return (ply_guess_r, ply_guess_c_idx)
 
-def computer_turn(board):
+def computer_turn(board, name):
     while True:
         com_guess_r, com_guess_c = random.randint(0, 8), random.choice(list_column)
-        for i, col in enumerate(list_column):
-            if col == com_guess_c:
-                com_guess_c_idx = i
-                break
-            
+        com_guess_c_idx = let_to_num[com_guess_c]
         if board[com_guess_r][com_guess_c_idx] == '_':
             board[com_guess_r][com_guess_c_idx] = '-'
-            print(f'the computer guess is: {com_guess_r + 1}, {com_guess_c}')
+            print(f'{name} launched a missile at place: {com_guess_r + 1}, {com_guess_c}')
             break
     
     return (com_guess_r, com_guess_c_idx)
 
-def check_hit(board_ply, board2, ply_pos):
+def check_hit(board_ply, board2, ply_pos, name):
     good_guesses = []
     r, c = ply_pos
     if board2[r][c] != '_':
-        print('a ship was hit!')
+        print(f'{name} hit a ship!')
         board_ply[r][c] = '*'
         good_guesses.append((r, c))
     else:
-        print('Missed')
+        print(f'{name} missed')
         
     return good_guesses
 
 
-def chek_if_sank(board, g_guesses, list_X: list, list_K: list, list_D: list, list_O: list, list_H: list):
+def chek_if_sank(board, g_guesses, name, list_X: list, list_K: list, list_D: list, list_O: list, list_H: list):
     for pos in g_guesses:
         if board[pos[0]][pos[1]] == 'X':
             list_X.append(pos)
@@ -72,25 +65,26 @@ def chek_if_sank(board, g_guesses, list_X: list, list_K: list, list_D: list, lis
             list_O.append(pos)
         elif board[pos[0]][pos[1]] == 'H':
             list_H.append(pos)
-    print(list_X)
-    print(list_K)
-    print(list_D)
-    print(list_O)
-    print(list_H)
-    
     
     if len(list_X) == 4:
-        print('You sank his Carrier')
+        print(f'{name} sank the Carrier')
         list_X.clear()
+        return 1
     elif len(list_K) == 4:
-        print('You sank his Battleship')
+        print(f'{name} sank the Battleship')
         list_K.clear()
+        return 1
     elif len(list_D) == 3:
-        print('You sank his Cruiser')
+        print(f'{name} sank the Cruiser')
         list_D.clear()
+        return 1
     elif len(list_O) == 2:
-        print('You sank his Submarine')
+        print(f'{name} sank the Submarine')
         list_O.clear()
+        return 1
     elif len(list_H) == 2:
-        print('You sank his Destroyer')
+        print(f'{name} sank his Destroyer')
         list_H.clear()
+        return 1
+    else:
+        return 0
