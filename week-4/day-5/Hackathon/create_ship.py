@@ -24,16 +24,17 @@ class Player_ships:
                 
             print('Enter the coordinates where you want your ship to start. If you choose "V" it will start from the top, and "H" will start from the right ')
             try:
-                ply_shp_r = int(input('Enter the row here (1-9): ')) - 1
+                ply_shp_r = int(input('Enter the row here (1-9): ')) 
                 while ply_shp_r not in rows:
-                    ply_shp_r = int(input("You have to choose a number between 1-9 ")) - 1
+                    ply_shp_r = int(input("You have to choose a number between 1-9 ")) 
             except ValueError:
-                ply_shp_r = int(input("You have to choose a number between 1-9 ")) - 1
+                ply_shp_r = int(input("You have to choose a number between 1-9 ")) 
                 
             ply_shp_c = input('Enter the column here (A-I): ').upper()
             while ply_shp_c not in columns:
                 ply_shp_c = input("You have to choose a letter from A-I ").upper()
-                
+            
+            ply_shp_r -= 1  
             ply_shp_c_idx = let_to_num[ply_shp_c]
             
             try:        
